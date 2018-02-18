@@ -20,5 +20,13 @@ setup(
     author_email='carlos.w.montecinos@gmail.com',
     url='https://github.com/wilfredinni/do-pack',
     license=license,
-    packages=find_packages(exclude=('tests', 'docs'))
+    packages=find_packages(exclude=('tests', 'docs')),
+    include_package_data=True,
+    install_requires=['click'],
+    python_requires='>=3',
+    entry_points={
+        'console_scripts': [
+            'do = do.do:main',
+        ]
+    },
 )
