@@ -18,7 +18,7 @@ setup(
     long_description=readme,
     author='Carlos Montecinos Geisse',
     author_email='carlos.w.montecinos@gmail.com',
-    url='',
+    url='https://github.com/wilfredinni/do-pack',
     license=license,
     packages=find_packages(exclude=('tests', 'docs'))
 )
