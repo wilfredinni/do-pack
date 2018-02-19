@@ -12,8 +12,6 @@ def setup_template(
     setup_file = Template(
         """# -*- coding: utf-8 -*-
 
-# Learn more: https://github.com/kennethreitz/setup.py
-
 from setuptools import setup, find_packages
 
 
@@ -44,4 +42,4 @@ setup(
         setup_url=setup_url,
     )
 
-# TODO: change the setup to a file
+# TODO: move the setup template to file

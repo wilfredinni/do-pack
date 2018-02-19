@@ -909,7 +909,7 @@ Public License instead of this License.  But first, please read
 # TODO: use Template to manage the date of the Copyright in the GNU GPLv3.
 # TODO: use Template to manage the date of the Copyright in the Apache License.
 # TODO: check the format of the apache license
-# TODO: change the licenses to a file
+# TODO: move licenses to file
 
 
 def show():

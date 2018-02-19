@@ -38,11 +38,14 @@ def assistant():
     A step by step assistant.
     """
     clear()
-    click.echo('do will now start the assistant.')
-    if click.confirm('Do you want to continue?'):
+    # click.echo('do will now start the assistant.')
+    if click.confirm('>> do will now start the assistant.' +
+                     ' Do you want to continue?'):
+        clear()
         # project name
-        name = click.prompt('\nEnter your Project name')
+        name = click.prompt('>> Enter your Project name')
         # flag=True == asistant mode - flag=False == project mode
+        clear()
         do.skeleton.make_skeleton(name, flag=True)
 
 
@@ -52,23 +55,28 @@ def legal():
     in the LICENSE file.
     """
     click.echo(
-        '\nSelect one of the following LICENSES ' +
+        '>> Select one of the following LICENSES ' +
         '(more detailed info in https://choosealicense.com):\n')
 
     do.licenses.show()
     chosen_licence = click.prompt(
         'Enter the number of the license to choose one')
 
+    # TODO: check if the user imput is valid
+
     if chosen_licence == '1':
+        clear()
         return do.licenses.choose('MIT License', 1)
     elif chosen_licence == '2':
+        clear()
         return do.licenses.choose('Apache License 2.0', 1)
     elif chosen_licence == '3':
+        clear()
         return do.licenses.choose('GNU GPLv3', 1)
 
 
 def setup():
-    click.echo('\nEnter the informatión for your setup.py file:\n')
+    click.echo('>> Enter the informatión for your setup.py file:\n')
     setup_name = click.prompt('name')
     setup_version = click.prompt('version')
     setup_description = click.prompt('description')

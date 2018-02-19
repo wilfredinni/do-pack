@@ -9,7 +9,7 @@ def make_skeleton(project, flag=False):
     Create de skeleton of the python project and
     Redirect the files and folders to the proper function
     """
-    # TODO: implement a template system for the skeleton in .json files
+    # TODO: implement a template system for the skeleton in .json
     skeleton = {
         project: ['LICENSE', 'setup.py', 'README.rst'],
         'bin': [project + '.py', '__init__.py', '..'],
