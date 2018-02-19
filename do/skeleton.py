@@ -1,5 +1,6 @@
 import os
 import sys
+import json
 import click
 import do.do
 
@@ -9,18 +10,23 @@ def make_skeleton(project, flag=False):
     Create de skeleton of the python project and
     Redirect the files and folders to the proper function
     """
-    # TODO: implement a template system for the skeleton in .json
-    skeleton = {
-        project: ['LICENSE', 'setup.py', 'README.rst'],
-        'bin': [project + '.py', '__init__.py', '..'],
-        'docs': ['index.rst', '..'],
-        'tests': ['__init__.py', 'test_' + project + '.py', '..']
-    }
+    # TODO: 50% - implement a template system for the skeleton in .json
+    # TODO: change project.py and test_project.py names for project.pyy
+    # TODO: join makefile() and writefile() in one function
+    try:
+        default_skeleton = os.path.join(os.path.dirname(__file__),
+                                        'templates/default.json')
+    except FileNotFoundError:
+        click.echo('Template file not found. Aborted!')
+        sys.exit(1)
+    # open the default skeleton template from templates folder
+    with open(default_skeleton) as f:
+        skeleton = json.load(f)
 
     for folder in skeleton.keys():
-        # ternary conditional operator
-        makedir(project) if folder == 'bin' else makedir(folder)
-        # change the name of the folder bin to project
+        # create the folders
+        makedir(folder, project)
+
         if flag:
             # flag=True == assistant mode
             for files in skeleton[folder]:
@@ -31,13 +37,20 @@ def make_skeleton(project, flag=False):
                 makefile(files)
 
 
-def makedir(directory):
+def makedir(directory, project):
     """
     Make the folders tree.
     """
+    real_folder = None
+    # change the name of base and bin for the name of the project
+    if directory == 'base' or directory == 'bin':
+        real_folder = project
+    else:
+        real_folder = directory
+    # write the folders name
     try:
-        os.makedirs(directory)
-        os.chdir(directory)
+        os.makedirs(real_folder)
+        os.chdir(real_folder)
     except FileExistsError:
         click.echo('Folder {} alredy exists. Aborted!'.format(directory))
         sys.exit(1)
