@@ -1,7 +1,7 @@
 import os
 import sys
 import click
-import do
+import do.do
 
 
 def make_skeleton(project, flag=False):
@@ -50,9 +50,9 @@ def makefile(file, flag=False):
     if flag:
         # flag=True == assistant
         if file == 'LICENSE':
-            writefile(file, do.legal())
+            writefile(file, do.do.legal())
         elif file == 'setup.py':
-            writefile(file, do.setup())
+            writefile(file, do.do.setup())
         else:
             writefile(file, '')
 

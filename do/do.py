@@ -1,8 +1,8 @@
 import click
 import os
-import skeleton
-import licenses
-import setup_config
+import do.skeleton
+import do.licenses
+import do.setup_config
 
 
 def clear(): return os.system('cls')
@@ -25,7 +25,7 @@ def create(project_name):
     click.echo('\nPypro will create your {} Project Structure.'
                .format(project_name))
     if click.confirm('Do you want to continue?'):
-        skeleton.make_skeleton(project_name)
+        do.skeleton.make_skeleton(project_name)
         click.echo('{} was created on {}'.format(project_name,
                                                  os.path.join(os.getcwd())))
     else:
@@ -43,7 +43,7 @@ def assistant():
         # project name
         name = click.prompt('\nEnter your Project name')
         # flag=True == asistant mode - flag=False == project mode
-        skeleton.make_skeleton(name, flag=True)
+        do.skeleton.make_skeleton(name, flag=True)
 
 
 def legal():
@@ -55,16 +55,16 @@ def legal():
         '\nSelect one of the following LICENSES ' +
         '(more detailed info in https://choosealicense.com):\n')
 
-    licenses.show()
+    do.licenses.show()
     chosen_licence = click.prompt(
         'Enter the number of the license to choose one')
 
     if chosen_licence == '1':
-        return licenses.choose('MIT License', 1)
+        return do.licenses.choose('MIT License', 1)
     elif chosen_licence == '2':
-        return licenses.choose('Apache License 2.0', 1)
+        return do.licenses.choose('Apache License 2.0', 1)
     elif chosen_licence == '3':
-        return licenses.choose('GNU GPLv3', 1)
+        return do.licenses.choose('GNU GPLv3', 1)
 
 
 def setup():
@@ -76,7 +76,7 @@ def setup():
     setup_author_email = click.prompt('author_email')
     setup_url = click.prompt('url')
 
-    return setup_config.setup_template(
+    return do.setup_config.setup_template(
         setup_name,
         setup_version,
         setup_description,
