@@ -37,6 +37,7 @@ def assistant():
     """
     A step by step assistant.
     """
+    # TODO: change all the flag for assist
     clear()
     # click.echo('do will now start the assistant.')
     if click.confirm('>> do will now start the assistant.' +
@@ -62,7 +63,7 @@ def legal():
     chosen_licence = click.prompt(
         'Enter the number of the license to choose one')
 
-    # TODO: check if the user imput is valid
+    # TODO: check if the user imput is valid and change to a dict
 
     if chosen_licence == '1':
         clear()
@@ -76,6 +77,9 @@ def legal():
 
 
 def setup():
+    """
+    Allows you to fill in the basic fields of setup.py.
+    """
     click.echo('>> Enter the informatión for your setup.py file:\n')
     setup_name = click.prompt('name')
     setup_version = click.prompt('version')

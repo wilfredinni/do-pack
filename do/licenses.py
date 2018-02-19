@@ -921,8 +921,9 @@ def show():
 
 def choose(licens, index):
     """
-    Choose from:
+    Allows to Choose from:
     MIT License - Apache License 2.0 - GNU GPLv3.
+    But only in the assistant mode.
         """
     return licenses[licens][index]
 

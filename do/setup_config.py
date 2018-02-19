@@ -9,6 +9,11 @@ def setup_template(
     setup_author_email,
     setup_url,
 ):
+    """
+    Template for the setup.py and the functions that allows
+    you to replace the basics fields.
+    """
+    # TODO: move the setup template to file
     setup_file = Template(
         """# -*- coding: utf-8 -*-
 
@@ -41,5 +46,3 @@ setup(
         setup_author_email=setup_author_email,
         setup_url=setup_url,
     )
-
-# TODO: move the setup template to file

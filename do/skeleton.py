@@ -8,12 +8,13 @@ import do.do
 def make_skeleton(project, flag=False):
     """
     Create de skeleton of the python project and
-    Redirect the files and folders to the proper function
+    Redirect the files and folders to the proper function.
     """
     # TODO: 50% - implement a template system for the skeleton in .json
     # TODO: change project.py and test_project.py names for project.pyy
     # TODO: join makefile() and writefile() in one function
     try:
+        # get the path for the default skeleton
         default_skeleton = os.path.join(os.path.dirname(__file__),
                                         'templates/default.json')
     except FileNotFoundError:
@@ -27,14 +28,9 @@ def make_skeleton(project, flag=False):
         # create the folders
         makedir(folder, project)
 
-        if flag:
-            # flag=True == assistant mode
-            for files in skeleton[folder]:
-                makefile(files, flag=True)
-        else:
-            # flag=False == project
-            for files in skeleton[folder]:
-                makefile(files)
+        for files in skeleton[folder]:
+            # flag=True == assistant mode - flag=False == create()
+            makefile(files, flag=True) if flag else makefile(files)
 
 
 def makedir(directory, project):
@@ -77,7 +73,7 @@ def makefile(file, flag=False):
 def writefile(file, content):
     """
     Function that write the files and go back one folder
-    for the sake of the stucture
+    for the sake of the stucture.
     """
     try:
         # file == '..' go back one directory
