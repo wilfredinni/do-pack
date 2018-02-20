@@ -15,8 +15,8 @@ def make_skeleton(project, flag=False):
     # TODO: join makefile() and writefile() in one function
     try:
         # get the path for the default skeleton
-        default_skeleton = os.path.join(os.path.dirname(__file__),
-                                        'templates/default.json')
+        default_skeleton = os.path.join(
+            os.path.dirname(__file__), 'templates/default.json')
     except FileNotFoundError:
         click.echo('Template file not found. Aborted!')
         sys.exit(1)
@@ -63,14 +63,14 @@ def makefile(file, flag=False):
         elif file == 'setup.py':
             writefile(file, do.do.setup())
         else:
-            writefile(file, '')
+            writefile(file)
 
     else:
         # flag=False == project (write an empty file)
-        writefile(file, '')
+        writefile(file)
 
 
-def writefile(file, content):
+def writefile(file, content=''):
     """
     Function that write the files and go back one folder
     for the sake of the stucture.
