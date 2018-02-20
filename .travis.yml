@@ -24,5 +24,5 @@ deploy:
     secure: PLEASE_REPLACE_ME
   on:
     tags: true
-    repo: wilfredinni/do
+    repo: wilfredinni/do-pack
     python: 3.6
