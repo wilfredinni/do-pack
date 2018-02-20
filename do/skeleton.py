@@ -21,7 +21,7 @@ def make_skeleton(project, choosen_license=None, setup=None, assist=False):
     with open(default_skeleton) as f:
         skeleton = json.load(f)
 
-    def makedir(directory, project):
+    def makedir(directory):
         """
         Make the folders tree.
         """
@@ -62,26 +62,28 @@ def make_skeleton(project, choosen_license=None, setup=None, assist=False):
         Function that write the files and go back one folder
         for the sake of the stucture.
         """
-        try:
-            # file == '..' go back one directory
-            if file == '..':
-                os.chdir('..')
-            else:
-                with open(file, 'w') as f:
-                    f.write(content)
-        except Exception as e:
-            click.echo('Error wrinting {}. Aborted!'.format(file))
-            sys.exit(1)
+        # try:
+        # file == '..' go back one directory
+        if file == '..':
+            os.chdir('..')
+        else:
+            with open(file, 'w') as f:
+                f.write(content)
+        # except Exception as e:
+        #     click.echo('Error wrinting {}. Aborted!'.format(file))
+        #     sys.exit(1)
 
     for folder in skeleton.keys():
         # create the folders
-        makedir(folder, project)
+        makedir(folder)
 
         for files in skeleton[folder]:
             # assist=True == assistant mode - assist=False == create()
-            makefile(files, assist=True) if assist else makefile(
-                files, project)
+            if assist:
+                makefile(files, assist=True)
+            else:
+                makefile(files)
 
 
 if __name__ == '__main__':
-    make_skeleton('test', assist=True)
+    make_skeleton('test')
