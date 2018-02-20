@@ -37,7 +37,7 @@ def assistant():
     """
     A step by step assistant.
     """
-    # TODO: change all the flag for assist
+    # TODO: change all the assist for assist
     clear()
     # click.echo('do will now start the assistant.')
     if click.confirm('>> do will now start the assistant.' +
@@ -45,9 +45,9 @@ def assistant():
         clear()
         # project name
         name = click.prompt('>> Enter your Project name')
-        # flag=True == asistant mode - flag=False == project mode
+        # assist=True == asistant mode - assist=False == project mode
         clear()
-        do.skeleton.make_skeleton(name, flag=True)
+        do.skeleton.make_skeleton(name, assist=True)
 
 
 def legal():

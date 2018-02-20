@@ -5,14 +5,12 @@ import click
 import do.do
 
 
-def make_skeleton(project, flag=False):
+def make_skeleton(project, assist=False):
     """
     Create de skeleton of the python project and
     Redirect the files and folders to the proper function.
     """
     # TODO: 50% - implement a template system for the skeleton in .json
-    # TODO: change project.py and test_project.py names for project.pyy
-    # TODO: join makefile() and writefile() in one function
     try:
         # get the path for the default skeleton
         default_skeleton = os.path.join(
@@ -29,44 +27,49 @@ def make_skeleton(project, flag=False):
         makedir(folder, project)
 
         for files in skeleton[folder]:
-            # flag=True == assistant mode - flag=False == create()
-            makefile(files, flag=True) if flag else makefile(files)
+            # assist=True == assistant mode - assist=False == create()
+            makefile(files, project, assist=True) if assist else makefile(
+                files, project)
 
 
 def makedir(directory, project):
     """
     Make the folders tree.
     """
-    real_folder = None
+
     # change the name of base and bin for the name of the project
     if directory == 'base' or directory == 'bin':
-        real_folder = project
-    else:
-        real_folder = directory
+        directory = project
+
     # write the folders name
     try:
-        os.makedirs(real_folder)
-        os.chdir(real_folder)
+        os.makedirs(directory)
+        os.chdir(directory)
     except FileExistsError:
         click.echo('Folder {} alredy exists. Aborted!'.format(directory))
         sys.exit(1)
 
 
-def makefile(file, flag=False):
+def makefile(file, project, assist=False):
     """
     Make the files for the project.
     """
-    if flag:
-        # flag=True == assistant
+    # change the names project.py and test_project.py
+    if file == 'project.py':
+        file = project + '.py'
+    elif file == 'test_project.py':
+        file = 'test_' + project + '.py'
+
+    if assist:
+        # assist=True == assistant
         if file == 'LICENSE':
             writefile(file, do.do.legal())
         elif file == 'setup.py':
             writefile(file, do.do.setup())
         else:
             writefile(file)
-
     else:
-        # flag=False == project (write an empty file)
+        # assist=False == project (write an empty file)
         writefile(file)
 
 
@@ -88,4 +91,4 @@ def writefile(file, content=''):
 
 
 if __name__ == '__main__':
-    make_skeleton('test', flag=True)
+    make_skeleton('test', assist=True)
