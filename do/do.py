@@ -37,7 +37,6 @@ def assistant():
     """
     A step by step assistant.
     """
-    # TODO: change all the assist for assist
     clear()
     # click.echo('do will now start the assistant.')
     if click.confirm('>> do will now start the assistant.' +
