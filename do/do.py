@@ -43,58 +43,39 @@ def assistant():
                      ' Do you want to continue?'):
         clear()
         # project name
-        name = click.prompt('>> Enter your Project name')
-        # assist=True == asistant mode - assist=False == project mode
-        clear()
-        do.skeleton.make_skeleton(name, assist=True)
+        project_name = click.prompt('project name')
+        setup_version = click.prompt('version')
+        setup_description = click.prompt('description')
+        setup_author = click.prompt('author')
+        setup_author_email = click.prompt('author_email')
+        setup_url = click.prompt('url')
+        click.echo(
+            '>> Select one of the following LICENSES ' +
+            '(more detailed info in https://choosealicense.com):\n')
+        do.licenses.show()
+        chosen_licence = click.prompt(
+            'Enter the number of the license to choose one')
 
+        if chosen_licence == '1':
+            chosen_licence = do.licenses.choose('MIT License', 1)
+        elif chosen_licence == '2':
+            chosen_licence = do.licenses.choose('Apache License 2.0', 1)
+        elif chosen_licence == '3':
+            chosen_licence = do.licenses.choose('GNU GPLv3', 1)
 
-def legal():
-    """
-    Prints the licenses and let you choose one to be writed
-    in the LICENSE file.
-    """
-    click.echo(
-        '>> Select one of the following LICENSES ' +
-        '(more detailed info in https://choosealicense.com):\n')
+        setup = do.setup_config.setup_template(
+            project_name,
+            setup_version,
+            setup_description,
+            setup_author,
+            setup_author_email,
+            setup_url
+        )
 
-    do.licenses.show()
-    chosen_licence = click.prompt(
-        'Enter the number of the license to choose one')
-
-    # TODO: check if the user imput is valid and change to a dict
-
-    if chosen_licence == '1':
-        clear()
-        return do.licenses.choose('MIT License', 1)
-    elif chosen_licence == '2':
-        clear()
-        return do.licenses.choose('Apache License 2.0', 1)
-    elif chosen_licence == '3':
-        clear()
-        return do.licenses.choose('GNU GPLv3', 1)
-
-
-def setup():
-    """
-    Allows you to fill in the basic fields of setup.py.
-    """
-    click.echo('>> Enter the informatión for your setup.py file:\n')
-    setup_name = click.prompt('name')
-    setup_version = click.prompt('version')
-    setup_description = click.prompt('description')
-    setup_author = click.prompt('author')
-    setup_author_email = click.prompt('author_email')
-    setup_url = click.prompt('url')
-
-    return do.setup_config.setup_template(
-        setup_name,
-        setup_version,
-        setup_description,
-        setup_author,
-        setup_author_email,
-        setup_url
-    )
+        do.skeleton.make_skeleton(project_name,
+                                  chosen_licence,
+                                  setup,
+                                  assist=True)
 
 
 if __name__ == '__main__':
