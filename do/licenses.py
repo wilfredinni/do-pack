@@ -2,7 +2,7 @@ import click
 
 licenses = {
     'MIT License': [
-        """Simple and Permisive.""",
+        'Simple and Permisive.',
         """
                                MIT License
 
@@ -30,7 +30,8 @@ SOFTWARE.
     'Apache License 2.0': [
         'Permissive, but also provides an express grant of patent rights.',
 
-        """               Apache License
+        """
+                         Apache License
                     Version 2.0, January 2004
                  http://www.apache.org/licenses/
 
@@ -908,7 +909,6 @@ Public License instead of this License.  But first, please read
 # TODO: use Template to manage the date of the Copyright in the MIT license.
 # TODO: use Template to manage the date of the Copyright in the GNU GPLv3.
 # TODO: use Template to manage the date of the Copyright in the Apache License.
-# TODO: check the format of the apache license
 # TODO: move licenses to file
 
 
