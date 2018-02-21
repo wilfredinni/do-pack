@@ -3,7 +3,6 @@ import os
 import do.skeleton
 import do.licenses
 import do.setup_config
-import do.test_template
 
 
 def clear(): return os.system('cls')
@@ -53,29 +52,29 @@ def assistant():
             '\n>> Select one of the following LICENSES ' +
             '(more detailed info in https://choosealicense.com):\n')
         # do.licenses.show()
-        do.test_template.show()
+        do.licenses.show()
         chosen_licence = click.prompt(
             '\nEnter the number of the license to choose one')
 
         # using a dict instead of an if statement
         def lice(num=chosen_licence):
             return {
-                '1': lambda: do.test_template.choose(
+                '1': lambda: do.licenses.choose(
                     'Apache License 2.0', setup_author),
-                '2': lambda: do.test_template.choose(
+                '2': lambda: do.licenses.choose(
                     'BSD License', setup_author),
-                '3': lambda: do.test_template.choose(
+                '3': lambda: do.licenses.choose(
                     'GNU Affero General Public License v3', setup_author),
-                '4': lambda: do.test_template.choose(
+                '4': lambda: do.licenses.choose(
                     'GNU Lesser General Public License v3', setup_author),
-                '5': lambda: do.test_template.choose(
+                '5': lambda: do.licenses.choose(
                     'GNU General Public License v3', setup_author,
                     project_name),
-                '6': lambda: do.test_template.choose(
+                '6': lambda: do.licenses.choose(
                     'MIT License', setup_author),
-                '7': lambda: do.test_template.choose(
+                '7': lambda: do.licenses.choose(
                     'Mozilla Public License Version 2.0'),
-                '8': lambda: do.test_template.choose(
+                '8': lambda: do.licenses.choose(
                     'Unlicensed')
             }.get(num, lambda: None)()
 
