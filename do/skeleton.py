@@ -13,7 +13,7 @@ def make_skeleton(project, choosen_license=None, setup=None, assist=False):
     try:
         # get the path for the default skeleton
         default_skeleton = os.path.join(
-            os.path.dirname(__file__), 'templates/default_structure.json')
+            os.path.dirname(__file__), 'templates\\default_structure.json')
     except FileNotFoundError:
         click.echo('Template file not found. Aborted!')
         sys.exit(1)
@@ -62,16 +62,16 @@ def make_skeleton(project, choosen_license=None, setup=None, assist=False):
         Function that write the files and go back one folder
         for the sake of the stucture.
         """
-        # try:
-        # file == '..' go back one directory
+        # if  file == '..' go back one directory
         if file == '..':
             os.chdir('..')
         else:
-            with open(file, 'w') as f:
-                f.write(content)
-        # except Exception as e:
-        #     click.echo('Error wrinting {}. Aborted!'.format(file))
-        #     sys.exit(1)
+            try:
+                with open(file, 'w') as f:
+                    f.write(content)
+            except Exception as e:
+                click.echo('Error wrinting {}. Aborted!'.format(file))
+                sys.exit(1)
 
     for folder in skeleton.keys():
         # create the folders
