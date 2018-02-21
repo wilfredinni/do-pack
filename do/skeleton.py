@@ -13,7 +13,7 @@ def make_skeleton(project, choosen_license=None, setup=None, assist=False):
     try:
         # get the path for the default skeleton
         default_skeleton = os.path.join(
-            os.path.dirname(__file__), 'templates/default.json')
+            os.path.dirname(__file__), 'templates/default_structure.json')
     except FileNotFoundError:
         click.echo('Template file not found. Aborted!')
         sys.exit(1)

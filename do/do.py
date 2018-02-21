@@ -50,7 +50,7 @@ def assistant():
         setup_author_email = click.prompt('author_email')
         setup_url = click.prompt('url')
         click.echo(
-            '>> Select one of the following LICENSES ' +
+            '\nSelect one of the following LICENSES ' +
             '(more detailed info in https://choosealicense.com):\n')
         do.licenses.show()
         chosen_licence = click.prompt(

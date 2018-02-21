@@ -1,0 +1,21 @@
+{
+    "base": [
+        "LICENSE",
+        "setup.py",
+        "README.rst"
+    ],
+    "bin": [
+        "project.py",
+        "__init__.py",
+        ".."
+    ],
+    "docs": [
+        "index.rst",
+        ".."
+    ],
+    "tests": [
+        "__init__.py",
+        "test_project.py",
+        ".."
+    ]
+}
