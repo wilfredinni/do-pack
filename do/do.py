@@ -11,7 +11,7 @@ def clear(): return os.system('cls')
 @click.group()
 def main():
     """
-    Simple CLI based script to make your Repository Structure.
+    Simple CLI based script to make your Project Structure.
     """
     pass
 
@@ -48,10 +48,8 @@ def assistant():
         setup_author = click.prompt('author')
         setup_author_email = click.prompt('author_email')
         setup_url = click.prompt('url')
-        click.echo(
-            '\n>> Select one of the following LICENSES ' +
-            '(more detailed info in https://choosealicense.com):\n')
-        # do.licenses.show()
+        click.echo('\n>> Select one of the following LICENSES ' +
+                   '(more detailed info in https://choosealicense.com):\n')
         do.licenses.show()
         chosen_licence = click.prompt(
             '\nEnter the number of the license to choose one')

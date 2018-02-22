@@ -7,12 +7,12 @@ import sys
 
 """
 $project - $year - $fullname
-------------------------------
+-------------------------------------
+GNU_GPLv3   = year, fullname, project
 apache2     = year, fullname
-BSD         = year fullname
+BSD         = year, fullname
 GNU_AGPLv3  = year, fullname
 mit         = year, fullname
-GNU_GPLv3   = project, year, fullname
 GNU_LGPLv3  = None
 Mozilla     = None
 Unlicensed  = None
@@ -20,10 +20,10 @@ Unlicensed  = None
 
 # short names for licenses
 apache2 = 'Apache License 2.0'
-bsd = 'BSD License'
 gnuAgpl = 'GNU Affero General Public License v3'
-mit = 'MIT License'
 gnuGpl = 'GNU General Public License v3'
+bsd = 'BSD License'
+mit = 'MIT License'
 
 # relativa path tho the licenses template folder
 template_path = license_path = os.path.join(
@@ -32,15 +32,13 @@ template_path = license_path = os.path.join(
 # current year
 year = str(datetime.now().year)
 
-
+# open the index.json that contains the license names and filenames
 try:
-    # open the index.json that contains the license names and filenames
     with open(template_path + 'index.json', 'r') as i:
         license_list = json.load(i)
 except FileNotFoundError:
-    click.echo(
-        'LicenseNotFoundError: {} Not Found. Aborted!'
-        .format(template_path + 'index.json'))
+    click.echo('LicenseNotFoundError: {} Not Found. Aborted!'
+               .format(template_path + 'index.json'))
     sys.exit(1)
 
 
@@ -59,10 +57,14 @@ def choose(license_name, author_name=None, project=None):
     """
     Allows to Choose one license, but only in assistant mode.
     """
-    # open the licens templates and use Template() to replace variables
-    with open(template_path + license_list[license_name], 'r') as f:
-        license_content = Template(f.read())
-
+    # open the license templates and use Template() to replace variables
+    try:
+        with open(template_path + license_list[license_name], 'r') as f:
+            license_content = Template(f.read())
+    except FileNotFoundError:
+        click.echo('LicenseNotFoundError: {} Not Found. Aborted!'
+                   .format(template_path + license_list[license_name]))
+        sys.exit(1)
     # licenses that need year and author name
     if (license_name == (apache2) or (license_name == bsd) or
         (license_name == gnuAgpl) or
