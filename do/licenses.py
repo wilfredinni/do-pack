@@ -34,7 +34,7 @@ year = str(datetime.now().year)
 
 # open the index.json that contains the license names and filenames
 try:
-    with open(template_path + 'index.json', 'r') as i:
+    with open(os.path.join(template_path, 'index.json'), 'r') as i:
         license_list = json.load(i)
 except FileNotFoundError:
     click.echo('LicenseNotFoundError: {} Not Found. Aborted!'
