@@ -1,4 +1,6 @@
 from string import Template
+import click
+import sys
 import os
 
 path_setup = os.path.join(
@@ -13,9 +15,14 @@ def setup_template(
     setup_author_email,
     setup_url,
 ):
-    with open(path_setup, 'r') as f:
-        setup_content = Template(f.read())
 
+    try:
+        with open(path_setup, 'r') as f:
+            setup_content = Template(f.read())
+    except FileNotFoundError:
+        click.echo('setupNotFoundError: {} Not Found. Aborted!'
+                   .format(path_setup))
+        sys.exit(1)
     return setup_content.substitute(
         setup_name=setup_name,
         setup_version=setup_version,
