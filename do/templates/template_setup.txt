@@ -20,7 +20,7 @@ setup(
     license=license,
     packages=find_packages(exclude=('tests', 'docs')),
     include_package_data=True,
-    install_requires=[],  # packages needed autside of the standard librery
+    install_requires=[],  # packages needed outside the standard library
     python_requires='>=3',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
