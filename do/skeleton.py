@@ -17,6 +17,7 @@ def make_skeleton(project, choosen_license=None, setup=None, assist=False):
     except FileNotFoundError:
         click.echo('Template file not found. Aborted!')
         sys.exit(1)
+
     # open the default skeleton template from templates folder
     with open(default_skeleton) as f:
         skeleton = json.load(f)

@@ -27,22 +27,20 @@ mit = 'MIT License'
 
 # relativa path tho the licenses template folder
 template_path = os.path.join(
-    os.path.dirname(__file__), 'templates\\index.json')
-
-template_path1 = os.path.join(
     os.path.dirname(__file__), 'templates\\licenses\\')
 
 # current year
 year = str(datetime.now().year)
 
 # open the index.json that contains the license names and filenames
-# try:
-with open(os.path.join(template_path), 'r') as i:
-    license_list = json.load(i)
-# except FileNotFoundError:
-#     click.echo('LicenseNotFoundError: {} Not Found. Aborted!'
-#                .format(template_path))
-#     sys.exit(1)
+try:
+    # ! error in travis!!!!
+    with open(os.path.join(template_path, 'index.json'), 'r') as i:
+        license_list = json.load(i)
+except FileNotFoundError:
+    click.echo('LicenseNotFoundError: {} Not Found. Aborted!'
+               .format(template_path + 'index.json'))
+    sys.exit(1)
 
 
 def show(index_json=license_list):
@@ -62,11 +60,11 @@ def choose(license_name, author_name=None, project=None):
     """
     # open the license templates and use Template() to replace variables
     try:
-        with open(template_path1 + license_list[license_name], 'r') as f:
+        with open(template_path + license_list[license_name], 'r') as f:
             license_content = Template(f.read())
     except FileNotFoundError:
         click.echo('LicenseNotFoundError: {} Not Found. Aborted!'
-                   .format(template_path1 + license_list[license_name]))
+                   .format(template_path + license_list[license_name]))
         sys.exit(1)
     # licenses that need year and author name
     if (license_name == (apache2) or (license_name == bsd) or
