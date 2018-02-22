@@ -50,6 +50,7 @@ def assistant():
         setup_url = click.prompt('url')
         click.echo('\n>> Select one of the following LICENSES ' +
                    '(more detailed info in https://choosealicense.com):\n')
+
         do.licenses.show()
         chosen_licence = click.prompt(
             '\nEnter the number of the license to choose one')

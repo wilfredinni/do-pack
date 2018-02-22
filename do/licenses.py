@@ -26,7 +26,7 @@ bsd = 'BSD License'
 mit = 'MIT License'
 
 # relativa path tho the licenses template folder
-template_path = license_path = os.path.join(
+template_path = os.path.join(
     os.path.dirname(__file__), 'templates\\licenses\\')
 
 # current year
