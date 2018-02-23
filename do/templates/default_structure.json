@@ -2,7 +2,10 @@
     "base": [
         "LICENSE",
         "setup.py",
-        "README.rst"
+        "README.rst",
+        ".gitignore",
+        "requirements.txt",
+        "test-requirements.txt"
     ],
     "bin": [
         "project.py",
