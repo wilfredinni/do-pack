@@ -3,12 +3,13 @@ do-pack
 
 A simple and quick command line tool to create python packages.
 
+
 Install
 -------
 
 ::
 
-    $ pip install do
+    $ pip install do-pack
 
 Usage
 -----
@@ -23,7 +24,7 @@ A step by step setup for new projects:
 
 ::
 
-    $ do wizard
+    $ do assistant
 
 This command let you fill the ``setup.py``, ``AUTHORS.rst`` and choose a ``LICENSE``.
 
