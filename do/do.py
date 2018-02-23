@@ -11,7 +11,7 @@ def clear(): return os.system('cls')
 @click.group()
 def main():
     """
-    Simple CLI based script to make your Project Structure.
+    Simple A command-line tool to create python packages.
     """
     pass
 
@@ -92,6 +92,14 @@ def assistant():
                                   chosen_licence,
                                   setup,
                                   assist=True)
+
+
+@main.command()
+def config():
+    """
+    A one time configuration to skip repeating common fields
+    """
+    print('soon...')
 
 
 if __name__ == '__main__':
