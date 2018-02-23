@@ -25,7 +25,7 @@ A step by step setup for new projects:
 
     $ do wizard
 
-This command let you fill the ``setup.py``, ``LICENSE`` and choose a ``AUTHORS.rst``.
+This command let you fill the `setup.py`, `AUTHORS.rst` and choose a `LICENSE`.
 
 Folder Structure
 ~~~~~~~~~~~~~~~~
