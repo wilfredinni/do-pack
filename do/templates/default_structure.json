@@ -3,6 +3,7 @@
         "LICENSE",
         "setup.py",
         "README.rst",
+        "AUTHORS.rst",
         ".gitignore",
         "requirements.txt",
         "test-requirements.txt"
