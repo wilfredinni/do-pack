@@ -4,14 +4,14 @@ do-pack
 A simple and quick command line tool to create python packages.
 
 Install
-~~~~~~~
+-------
 
 ::
 
     $ pip install do
 
 Usage
-~~~~~
+-----
 
 Create an empty project:
 
@@ -28,7 +28,7 @@ A step by step setup for new projects:
 This command let you fill the `setup.py`, `AUTHORS.rst` and choose a `LICENSE`.
 
 Folder Structure
-~~~~~~~~~~~~~~~~
+----------------
 
 ::
 
@@ -50,7 +50,7 @@ Folder Structure
     └── test-requirements.txt
 
 TODOs
-~~~~~
+-----
 
 -  Implement a ``template`` system for a more flexible folder structure
    (50%).
