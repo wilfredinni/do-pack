@@ -1,5 +1,5 @@
 """
-Uses to template the licenses:
+How to template the licenses:
 
 $project - $year - $fullname
 -------------------------------------
