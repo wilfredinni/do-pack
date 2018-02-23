@@ -38,7 +38,7 @@ year = str(datetime.now().year)
 def load_index_json(path=template_path):
     # open the index.json that contains the license names and filenames
     try:
-        # ! error in travis!!!!
+        # FIXME: error in travis!!!!
         with open(os.path.join(path, 'index.json'), 'r') as i:
             return json.load(i)
     except FileNotFoundError:

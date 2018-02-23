@@ -20,7 +20,7 @@ def main():
 @click.argument('project-name')
 def create(project_name):
     """
-    creates an empty proyect structure.
+    creates an empty python package.
     """
     click.echo('\nPypro will create your {} Project Structure.'
                .format(project_name))
@@ -92,14 +92,6 @@ def assistant():
                                   chosen_licence,
                                   setup,
                                   assist=True)
-
-
-@main.command()
-def config():
-    """
-    A one time configuration to skip repeating common fields
-    """
-    print('soon...')
 
 
 if __name__ == '__main__':

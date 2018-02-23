@@ -12,7 +12,7 @@ with open('LICENSE') as f:
 
 setup(
     name='do-pack',
-    version='0.1.0',
+    version='0.1.1',
     description='A command-line tool to create python packages',
     long_description=readme,
     author='Carlos Montecinos Geisse',
