@@ -80,6 +80,7 @@ def make_skeleton(project,
                 click.echo('Error wrinting {}. Aborted!'.format(file))
                 sys.exit(1)
 
+    # from here starts the program
     for folder in skeleton.keys():
         # create the folders
         makedir(folder)
