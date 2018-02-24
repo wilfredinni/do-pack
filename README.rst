@@ -1,3 +1,6 @@
+.. image:: https://travis-ci.org/wilfredinni/do-pack.svg?branch=master
+    :target: https://travis-ci.org/wilfredinni/do-pack .. image:: https://img.shields.io/github/license/mashape/apistatus.svg   :target: https://opensource.org/licenses/MIT
+
 do-pack
 =======
 
