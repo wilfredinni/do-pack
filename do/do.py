@@ -2,7 +2,7 @@ import click
 import os
 import do.skeleton
 import do.licenses
-import do.setup_config
+import do.template_config
 
 
 def clear(): return os.system('cls')
@@ -79,7 +79,7 @@ def assistant():
 
         chosen_licence = lice()
 
-        setup = do.setup_config.setup_template(
+        setup = do.template_config.setup_template(
             project_name,
             setup_version,
             setup_description,
@@ -88,10 +88,19 @@ def assistant():
             setup_url
         )
 
-        do.skeleton.make_skeleton(project_name,
-                                  chosen_licence,
-                                  setup,
-                                  assist=True)
+        authors = do.template_config.authors_template(
+            project_name,
+            setup_author,
+            setup_author_email
+        )
+
+        do.skeleton.make_skeleton(
+            project_name,
+            authors,
+            chosen_licence,
+            setup,
+            assist=True
+        )
 
 
 if __name__ == '__main__':

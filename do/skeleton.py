@@ -4,7 +4,11 @@ import json
 import click
 
 
-def make_skeleton(project, choosen_license=None, setup=None, assist=False):
+def make_skeleton(project,
+                  authors=None,
+                  choosen_license=None,
+                  setup=None,
+                  assist=False):
     """
     Create de skeleton of the python project and
     Redirect the files and folders to the proper function.
@@ -46,16 +50,18 @@ def make_skeleton(project, choosen_license=None, setup=None, assist=False):
             file = project + '.py'
         elif file == 'test_project.py':
             file = 'test_' + project + '.py'
+        # assist=True == assistant
         if assist:
-            # assist=True == assistant
             if file == 'LICENSE':
                 writefile(file, choosen_license)
             elif file == 'setup.py':
                 writefile(file, setup)
+            elif file == 'AUTHORS.rst':
+                writefile(file, authors)
             else:
                 writefile(file)
+        # assist=False == project (write an empty file)
         else:
-            # assist=False == project (write an empty file)
             writefile(file)
 
     def writefile(file, content=''):
