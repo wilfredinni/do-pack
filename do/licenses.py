@@ -38,7 +38,7 @@ year = str(datetime.now().year)
 def load_index_json(path=template_path):
     # open the index.json that contains the license names and filenames
     try:
-        # FIXME: error in travis!!!!
+        # !FIXME: error in travis!!!!
         with open(os.path.join(path, 'index.json'), 'r') as i:
             return json.load(i)
     except FileNotFoundError:
@@ -82,20 +82,19 @@ def choose(license_name, author_name=None, project=None):
     lic_name = load_license_content(license_name)
 
     # licenses that need year and author name
-    if (license_name == (apache2) or (license_name == bsd) or
+    if ((license_name == apache2) or
+        (license_name == bsd) or
         (license_name == gnuAgpl) or
             (license_name == mit)):
-        return lic_name.substitute(
-            year=year,
-            fullname=author_name
-        )
+        return lic_name.substitute(year=year,
+                                   fullname=author_name
+                                   )
     # licenses that need year, author name and project name
     elif license_name == gnuGpl:
-        return lic_name.substitute(
-            year=year,
-            fullname=author_name,
-            project=project
-        )
+        return lic_name.substitute(year=year,
+                                   fullname=author_name,
+                                   project=project
+                                   )
     else:
         return lic_name.substitute()
 
