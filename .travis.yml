@@ -1,5 +1,4 @@
 # Config file for automatic testing at travis-ci.org
-
 language: python
 python:
   - 3.6
@@ -7,18 +6,14 @@ python:
   - 3.4
 
 # Command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
-install: pip install -U tox-travis
-
+install: 
+  - pip install -r REQUIREMENTS
+  - pip install -r TEST-REQUIREMENTS
 # Command to run tests, e.g. python setup.py test
-script: tox
-
-deploy:
-  provider: pypi
-  distributions: sdist bdist_wheel
-  user: wilfredinni
-  password:
-    secure: PLEASE_REPLACE_ME
-  on:
-    tags: true
-    repo: wilfredinni/do-pack
-    python: 3.6
+before_script:
+  - "pip install ."
+python:
+  - "2.7"
+  - "3.4"
+  - "3.5"
+script: py.test tests/test_*.py
