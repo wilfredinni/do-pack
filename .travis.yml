@@ -7,8 +7,8 @@ python:
 
 # Command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
 install: 
-  - pip install -r REQUIREMENTS
-  - pip install -r TEST-REQUIREMENTS
+  - pip install -r requirements.txt
+  - pip install -r test_requirements.txt
 # Command to run tests, e.g. python setup.py test
 before_script:
   - "pip install ."
