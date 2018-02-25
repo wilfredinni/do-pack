@@ -14,3 +14,4 @@ before_script:
   - "pip install ."
 
 script: pytest tests/test_*.py
+
