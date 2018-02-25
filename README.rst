@@ -1,21 +1,19 @@
-
-
 do-pack
 =======
 
 A simple and quick command line tool to create python packages.
 
-.. image:: https://api.codacy.com/project/badge/Grade/33ea81ba45c64d1199f8b9cd94f11131
-    :target: https://www.codacy.com/app/carlos.w.montecinos/do-pack?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=wilfredinni/do-pack&amp;utm_campaign=Badge_Grade
-
-.. image:: https://requires.io/github/wilfredinni/do-pack/requirements.svg?branch=master
-    :target: https://requires.io/github/wilfredinni/do-pack/requirements/?branch=master
-
 .. image:: https://travis-ci.org/wilfredinni/do-pack.svg?branch=master
     :target: https://travis-ci.org/wilfredinni/do-pack
 
+.. image:: https://requires.io/github/wilfredinni/do-pack/requirements.svg?branch=master
+    :target: https://requires.io/github/wilfredinni/do-pack/requirements/?branch=master  
+    
+.. image:: https://api.codacy.com/project/badge/Grade/33ea81ba45c64d1199f8b9cd94f11131
+    :target: https://www.codacy.com/app/carlos.w.montecinos/do-pack?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=wilfredinni/do-pack&amp;utm_campaign=Badge_Grade
+
 .. image:: http://img.shields.io/badge/license-MIT-green.svg
-    :target: https://github.com/wilfredinni/do-pack/blob/master/LICENSE    
+    :target: https://github.com/wilfredinni/do-pack/blob/master/LICENSE
 
 .. image:: https://bettercodehub.com/edge/badge/wilfredinni/do-pack?branch=master
     :target: https://bettercodehub.com/
