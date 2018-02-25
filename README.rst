@@ -1,9 +1,19 @@
+
+
 do-pack
 =======
 
 A simple and quick command line tool to create python packages.
 
+.. image:: https://requires.io/github/wilfredinni/do-pack/requirements.svg?branch=master
+    :target: https://requires.io/github/wilfredinni/do-pack/requirements/?branch=master
 
+.. image:: https://travis-ci.org/wilfredinni/do-pack.svg?branch=master
+    :target: https://travis-ci.org/wilfredinni/do-pack
+
+.. image:: http://img.shields.io/badge/license-MIT-green.svg
+    :target: https://github.com/wilfredinni/do-pack/blob/master/LICENSE
+    
 Install
 -------
 
