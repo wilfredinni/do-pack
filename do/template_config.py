@@ -4,12 +4,12 @@ import sys
 import os
 
 path_template = os.path.join(
-    os.path.dirname(__file__), 'templates\\')
+    os.path.dirname(__file__), 'templates')
 
 
 def load_template(template_file, path=path_template):
     try:
-        with open(path + template_file, 'r') as f:
+        with open(os.path.join(path, template_file), 'r') as f:
             loaded_template = Template(f.read())
     except FileNotFoundError:
         click.echo('fileNotFoundError: {} Not Found. Aborted!'
