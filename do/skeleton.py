@@ -14,17 +14,18 @@ def make_skeleton(project,
     Redirect the files and folders to the proper function.
     """
     # TODO: 50% - implement a template system for the skeleton in .json
-    try:
-        # get the path for the default skeleton
-        default_skeleton = os.path.join(
-            os.path.dirname(__file__), 'templates\\default_structure.json')
-    except FileNotFoundError:
-        click.echo('Template file not found. Aborted!')
-        sys.exit(1)
-
-    # open the default skeleton template from templates folder
-    with open(default_skeleton) as f:
-        skeleton = json.load(f)
+    def load_structure():
+        try:
+            # get the path for the default skeleton
+            default_skeleton = os.path.join(
+                os.path.dirname(__file__), 'templates', 'default_structure.json')
+            with open(default_skeleton) as f:
+                skeleton = json.load(f)
+        except FileNotFoundError:
+            click.echo('Template file not found. Aborted!')
+            sys.exit(1)
+        return skeleton
+        # open the default skeleton template from templates folder
 
     def makedir(directory):
         """
@@ -81,11 +82,11 @@ def make_skeleton(project,
                 sys.exit(1)
 
     # from here starts the program
-    for folder in skeleton.keys():
+    for folder in load_structure().keys():
         # create the folders
         makedir(folder)
 
-        for files in skeleton[folder]:
+        for files in load_structure()[folder]:
             # assist=True == assistant mode - assist=False == create()
             if assist:
                 makefile(files, assist=True)
