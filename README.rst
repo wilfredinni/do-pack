@@ -69,3 +69,8 @@ TODOs
    *autor_name* and *author_email*).
 -  Generate the documentation (sphinx).
 -  Fix *travis build*: ``load_index_json()`` in ``licenses.py``.
+
+
+.. image:: https://api.codacy.com/project/badge/Grade/1c62be8d3a4a40a282da04aed89ea2f9
+   :alt: Codacy Badge
+   :target: https://app.codacy.com/app/carlos.w.montecinos/do-pack?utm_source=github.com&utm_medium=referral&utm_content=wilfredinni/do-pack&utm_campaign=badger
