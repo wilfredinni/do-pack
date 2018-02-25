@@ -12,8 +12,5 @@ install:
 # Command to run tests, e.g. python setup.py test
 before_script:
   - "pip install ."
-python:
-  - "2.7"
-  - "3.4"
-  - "3.5"
-script: py.test tests/test_*.py
+
+script: pytest tests/test_*.py
