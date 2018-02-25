@@ -15,7 +15,10 @@ A simple and quick command line tool to create python packages.
     :target: https://travis-ci.org/wilfredinni/do-pack
 
 .. image:: http://img.shields.io/badge/license-MIT-green.svg
-    :target: https://github.com/wilfredinni/do-pack/blob/master/LICENSE
+    :target: https://github.com/wilfredinni/do-pack/blob/master/LICENSE    
+
+.. image:: https://bettercodehub.com/edge/badge/wilfredinni/do-pack?branch=master
+    :target: https://bettercodehub.com/
     
 Install
 -------
