@@ -72,4 +72,3 @@ TODOs
 -  Add a ``congig`` command to fill common fields once (such as
    *autor_name* and *author_email*).
 -  Generate the documentation (sphinx).
--  Fix *travis build*: ``load_index_json()`` in ``licenses.py``.

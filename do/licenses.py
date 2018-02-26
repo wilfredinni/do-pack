@@ -27,18 +27,19 @@ gnuGpl = 'GNU General Public License v3'
 bsd = 'BSD License'
 mit = 'MIT License'
 
-# relative path tho the licenses template folder
+# relative path to the licenses template folder
 template_path = os.path.join(
-    os.path.dirname(__file__), 'templates\\licenses\\')
+    os.path.dirname(__file__), 'templates', 'licenses')
 
 # current year
 year = str(datetime.now().year)
 
 
 def load_index_json(path=template_path):
-    # open the index.json that contains the license names and filenames
+    """
+    open the index.json that contains the license names and filenames
+    """
     try:
-        # !FIXME: error in travis!!!!
         with open(os.path.join(path, 'index.json'), 'r') as i:
             return json.load(i)
     except FileNotFoundError:
@@ -54,7 +55,8 @@ def load_license_content(license_name):
     index_json = load_index_json()
     # open the license templates and use Template() to replace variables
     try:
-        with open(template_path + index_json[license_name], 'r') as f:
+        with open(os.path.join(template_path,
+                               index_json[license_name]), 'r') as f:
             return Template(f.read())
     except FileNotFoundError:
         click.echo('LicenseNotFoundError: {} Not Found. Aborted!'
@@ -64,7 +66,7 @@ def load_license_content(license_name):
 
 def show(index_json=load_index_json()):
     """
-    Prints a the list of licenses in the index.json for the user to choose
+    Prints the list of licenses in the index.json for the user to choose
     """
     index = 1
     # iterates over the keys of index.json and print them
@@ -75,7 +77,7 @@ def show(index_json=load_index_json()):
 
 def choose(license_name, author_name=None, project=None):
     """
-    Allows to Choose one license, but only in assistant mode.
+    Allows to Choose a license in assistant mode.
 
     """
     # the call to the function that load the content a license
@@ -100,4 +102,5 @@ def choose(license_name, author_name=None, project=None):
 
 
 if __name__ == '__main__':
-    show()
+    a = show()
+    click.echo(type(a))

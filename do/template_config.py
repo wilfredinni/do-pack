@@ -10,12 +10,11 @@ path_template = os.path.join(
 def load_template(template_file, path=path_template):
     try:
         with open(os.path.join(path, template_file), 'r') as f:
-            loaded_template = Template(f.read())
+            return Template(f.read())
     except FileNotFoundError:
         click.echo('fileNotFoundError: {} Not Found. Aborted!'
                    .format(path))
         sys.exit(1)
-    return loaded_template
 
 
 def setup_template(setup_name,
@@ -52,5 +51,4 @@ def authors_template(project_name,
 
 
 if __name__ == '__main__':
-    author_test = authors_template('project', 'carlos', 'carlos@gmail.com')
-    click.echo(author_test)
+    pass

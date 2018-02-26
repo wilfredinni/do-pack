@@ -22,7 +22,7 @@ def create(project_name):
     """
     creates an empty python package.
     """
-    click.echo('\nPypro will create your {} Project Structure.'
+    click.echo('\ndo will create your {} Project Structure.'
                .format(project_name))
     if click.confirm('Do you want to continue?'):
         do.skeleton.make_skeleton(project_name)
@@ -101,6 +101,9 @@ def assistant():
             setup,
             assist=True
         )
+
+        click.echo('\n>> {} was created on {}'.format(
+            project_name, os.path.join(os.getcwd())))
 
 
 if __name__ == '__main__':

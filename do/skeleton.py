@@ -12,20 +12,11 @@ def make_skeleton(project,
     """
     Create de skeleton of the python project and
     Redirect the files and folders to the proper function.
+
+    Also write the AUTHORS.rst, LICENSE and setup.py with
+    the users inputs in the assistant mode.
     """
     # TODO: 50% - implement a template system for the skeleton in .json
-    def load_structure():
-        try:
-            # get the path for the default skeleton
-            default_skeleton = os.path.join(
-                os.path.dirname(__file__), 'templates', 'default_structure.json')
-            with open(default_skeleton) as f:
-                skeleton = json.load(f)
-        except FileNotFoundError:
-            click.echo('Template file not found. Aborted!')
-            sys.exit(1)
-        return skeleton
-        # open the default skeleton template from templates folder
 
     def makedir(directory):
         """
@@ -44,7 +35,8 @@ def make_skeleton(project,
 
     def makefile(file, assist=False):
         """
-        Make the files for the project.
+        Make the files for the project and write the content
+        of AUTHORS.rst, LICENSE and setup.py in assistant mode
         """
         # change the names project.py and test_project.py
         if file == 'project.py':
@@ -70,8 +62,7 @@ def make_skeleton(project,
         Function that write the files and go back one folder
         for the sake of the stucture.
         """
-        # if  file == '..' go back one directory
-        if file == '..':
+        if file == '..':  # go back one directory
             os.chdir('..')
         else:
             try:
@@ -82,10 +73,10 @@ def make_skeleton(project,
                 sys.exit(1)
 
     # from here starts the program
+    # make the folders
     for folder in load_structure().keys():
-        # create the folders
         makedir(folder)
-
+        # make the files
         for files in load_structure()[folder]:
             # assist=True == assistant mode - assist=False == create()
             if assist:
@@ -94,5 +85,21 @@ def make_skeleton(project,
                 makefile(files)
 
 
+def load_structure():
+    """
+    Load the template for the python package
+    """
+    try:
+        default_skeleton = os.path.join(
+            os.path.dirname(__file__),
+            'templates', 'default_structure.json'
+        )
+        with open(default_skeleton) as f:
+            return json.load(f)
+    except FileNotFoundError:
+        click.echo('Template file not found. Aborted!')
+        sys.exit(1)
+
+
 if __name__ == '__main__':
-    make_skeleton('test')
+    pass
