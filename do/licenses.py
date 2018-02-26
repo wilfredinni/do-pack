@@ -102,5 +102,4 @@ def choose(license_name, author_name=None, project=None):
 
 
 if __name__ == '__main__':
-    a = show()
-    click.echo(type(a))
+    pass

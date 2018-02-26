@@ -28,4 +28,4 @@ def test_templates():
 
 def test_licenses():
     test_index = do.licenses.load_index_json()
-    assert type(test_index) is dict
+    assert type(test_index) == dict
