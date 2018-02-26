@@ -69,6 +69,6 @@ TODOs
 
 -  Implement a ``template`` system for a more flexible folder structure
    (50%).
--  Add a ``congig`` command to fill common fields once (such as
+-  Add a ``config`` command to fill common fields once (such as
    *autor_name* and *author_email*).
 -  Generate the documentation (sphinx).
