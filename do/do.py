@@ -4,32 +4,33 @@ import do.skeleton
 import do.licenses
 import do.template_config
 
-
-def clear(): return os.system('cls')
+# TODO: create the file for the config and the function that save it.
+# TODO: use the seved variables to replace the setup options.
+# TODO: implement templates for create() (empty structure).
 
 
 @click.group()
 def main():
     """
-    Simple A command-line tool to create python packages.
+    Simple command-line tool to create python packages.
     """
     pass
 
 
 @main.command()
+@click.option('--template', '-t',
+              help='Lets you choose a Template.')
 @click.argument('project-name')
-def create(project_name):
+def create(project_name, template):
     """
-    creates an empty python package.
+    creates an empty structure for your package.
     """
     click.echo('\ndo will create your {} Project Structure.'
                .format(project_name))
     if click.confirm('Do you want to continue?'):
         do.skeleton.make_skeleton(project_name)
-        click.echo('{} was created on {}'.format(project_name,
-                                                 os.path.join(os.getcwd())))
-    else:
-        click.echo('Aborded!')
+        click.echo('{} was created on {}'
+                   .format(project_name, os.path.join(os.getcwd())))
 
 
 @main.command()
@@ -104,6 +105,21 @@ def assistant():
 
         click.echo('\n>> {} was created on {}'.format(
             project_name, os.path.join(os.getcwd())))
+
+
+@main.command()
+def config():
+    """
+    A simple configuration for common fields.
+    If executed twice, it will overwrite the previous configuration.
+    """
+    click.echo('\nWelcome to the configuration for common fields.')
+    if click.confirm('Do you want to continue?'):
+        oneTime_author = click.prompt('\nauthor')
+        oneTime_mail = click.prompt('author_email')
+
+
+def clear(): return os.system('cls')
 
 
 if __name__ == '__main__':
