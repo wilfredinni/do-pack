@@ -46,7 +46,7 @@ def make_skeleton(project,
 
         if assist:
             # assist=True == assistant
-            {  # dictionary and get over an if else statement
+            {
                 'LICENSE': lambda: writefile(file, choosen_license),
                 'AUTHORS.rst': lambda: writefile(file, authors),
                 'setup.py': lambda: writefile(file, setup)
