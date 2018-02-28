@@ -43,18 +43,16 @@ def make_skeleton(project,
             file = project + '.py'
         elif file == 'test_project.py':
             file = 'test_' + project + '.py'
-        # assist=True == assistant
+
         if assist:
-            if file == 'LICENSE':
-                writefile(file, choosen_license)
-            elif file == 'setup.py':
-                writefile(file, setup)
-            elif file == 'AUTHORS.rst':
-                writefile(file, authors)
-            else:
-                writefile(file)
-        # assist=False == project (write an empty file)
+            # assist=True == assistant
+            {  # dictionary and get over an if else statement
+                'LICENSE': lambda: writefile(file, choosen_license),
+                'AUTHORS.rst': lambda: writefile(file, authors),
+                'setup.py': lambda: writefile(file, setup)
+            }.get(file, lambda: writefile(file))()
         else:
+            # assist=False == project (write an empty file)
             writefile(file)
 
     def writefile(file, content=''):

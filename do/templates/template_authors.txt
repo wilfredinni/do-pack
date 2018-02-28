@@ -1,4 +1,4 @@
-$project_name es written and maintained by:
+$project_name is written and maintained by:
 
 * $setup_author - $setup_author_email
 
