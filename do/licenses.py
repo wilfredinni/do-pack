@@ -89,14 +89,12 @@ def choose(license_name, author_name=None, project=None):
         (license_name == gnuAgpl) or
             (license_name == mit)):
         return lic_name.substitute(year=year,
-                                   fullname=author_name
-                                   )
+                                   fullname=author_name)
     # licenses that need year, author name and project name
     elif license_name == gnuGpl:
         return lic_name.substitute(year=year,
                                    fullname=author_name,
-                                   project=project
-                                   )
+                                   project=project)
     else:
         return lic_name.substitute()
 
