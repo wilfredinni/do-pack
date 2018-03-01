@@ -40,7 +40,9 @@ A step by step setup for new projects:
 
     $ do assistant
 
-This command let you fill the ``setup.py``, ``AUTHORS.rst`` and choose a ``LICENSE``.
+This command let you fill the ``setup.py``, ``AUTHORS.rst``, choose a ``LICENSE`` and
+a ``.gitignore`` file with rules for Linux, MacOs, Windows, python, Visual Studio, VS Code, 
+Sublime Text and Pycharm (made with https://www.gitignore.io/).
 
 Folder Structure
 ----------------
