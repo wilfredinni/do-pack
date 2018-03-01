@@ -4,9 +4,9 @@ import string
 import do.licenses
 
 
-def test_skeleton():
-    test_load = do.skeleton.load_structure()
-    assert type(test_load) == dict
+def test_load_template():
+    test_load = do.skeleton.load_template()
+    assert isinstance(test_load, dict)
 
 
 def test_templates():
@@ -21,11 +21,11 @@ def test_templates():
         setup_author_email='setup_author_email',
         setup_url='setup_url')
 
-    assert type(test_author) == str
-    assert type(test_load) == string.Template
-    assert type(test_setup) == str
+    assert isinstance(test_author, str)
+    assert isinstance(test_load, string.Template)
+    assert isinstance(test_setup, str)
 
 
 def test_licenses():
     test_index = do.licenses.load_index_json()
-    assert type(test_index) == dict
+    assert isinstance(test_index, dict)
