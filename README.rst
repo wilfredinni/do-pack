@@ -3,6 +3,9 @@ do-pack
 
 A simple and quick command line tool to create python packages.
 
+.. image:: https://badge.fury.io/py/do-pack.svg
+    :target: https://badge.fury.io/py/do-pack
+
 .. image:: https://travis-ci.org/wilfredinni/do-pack.svg?branch=master
     :target: https://travis-ci.org/wilfredinni/do-pack
 
