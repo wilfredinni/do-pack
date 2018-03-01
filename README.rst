@@ -31,6 +31,14 @@ Install
 Usage
 -----
 
+Run the config command:
+
+::
+
+    $ do config
+
+Use it to fill common fields once (if executed twice, it will overwrite the previous configuration)
+
 Create an empty project:
 
 ::
@@ -44,8 +52,8 @@ A step by step setup for new projects:
     $ do assistant
 
 This command let you fill the ``setup.py``, ``AUTHORS.rst``, choose a ``LICENSE`` and
-a ``.gitignore`` file with rules for Linux, MacOs, Windows, python, Visual Studio, VS Code, 
-Sublime Text and Pycharm (made with https://www.gitignore.io/).
+a ``.gitignore`` file with rules for *Linux*, *MacOs*, *Windows*, *Python*, *Visual Studio*, *VS Code*, 
+*Sublime Text* and *Pycharm* (made with https://www.gitignore.io/).
 
 Folder Structure
 ----------------
