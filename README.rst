@@ -31,13 +31,16 @@ Install
 Usage
 -----
 
+<<<<<<< HEAD
 - Run the config command:
+=======
+Run the ``config`` command to fill common fields once (if executed twice, it will overwrite the previous configuration):
+>>>>>>> b10b4da58dc1e8bd89b7a6e4b19520d6073191e1
 
 ::
 
     $ do config
 
-Use it to fill common fields once (if executed twice, it will overwrite the previous configuration)
 
 - Create a default python project:
 
@@ -66,7 +69,7 @@ To use your own template put it in a *.json* file in your current directory. Ex.
 
     $ do assistant
 
-This command let you fill the ``setup.py``, ``AUTHORS.rst``, choose a ``LICENSE`` and
+This command let you fill the ``setup.py``, ``AUTHORS.rst``, choose a ``LICENSE`` and write
 a ``.gitignore`` file with rules for *Linux*, *MacOs*, *Windows*, *Python*, *Visual Studio*, *VS Code*, 
 *Sublime Text* and *Pycharm* (made with https://www.gitignore.io/).
 
