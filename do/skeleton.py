@@ -1,6 +1,6 @@
 """
 Create an empty folder and a file structure for a
-python project based on the name of the project.
+python package based on the name of the project.
 """
 
 import os
@@ -9,27 +9,42 @@ import json
 import click
 
 
-def make_skeleton(project_name):
+def make_skeleton(project_name, template=False):
     """
-    Creates an empty folder and file structure for a python project.
+    Create an empty structure for a python project.
     """
-    # make the folders
-    for folder in load_template().keys():
+    if template:
+        # load the structure for the custom template
+        loaded_template = load_template(template)
+    else:
+        # load the structure for the default template
+        loaded_template = load_template()
+
+    for folder in loaded_template.keys():
+        # make the folders
         makedir(folder, project_name)
-        # make the files
-        for files in load_template()[folder]:
+        for files in loaded_template[folder]:
+            # make the files
             makefile(files, project_name)
 
 
-def load_template():
+def load_template(template=False):
     """
-    Load the default template for the python package.
+    Load the default or custom template for the python package.
     """
+    if template:
+        if os.path.exists(os.path.join(os.getcwd(), template + '.json')):
+            # relative path
+            path = os.path.join(os.getcwd(), template + '.json')
+        else:
+            path = os.path.join(
+                os.path.dirname(__file__), 'templates', template + '.json')
+    else:
+        # absolute path
+        path = os.path.join(
+            os.path.dirname(__file__), 'templates', 'default_structure.json')
     try:
-        default_skeleton = os.path.join(
-            os.path.dirname(__file__), 'templates', 'default_structure.json'
-        )
-        with open(default_skeleton) as template:
+        with open(path, 'r') as template:
             return json.load(template)
     except FileNotFoundError:
         click.echo('Template file not found. Aborted!')
@@ -41,7 +56,7 @@ def makedir(directory, project_name):
     Make the folder tree.
     """
     # change the name of base and bin for the name of the project
-    if directory == 'base' or directory == 'bin':
+    if (directory == 'base') or (directory == 'bin'):
         directory = project_name
     # write the folders name
     try:
@@ -52,7 +67,7 @@ def makedir(directory, project_name):
         sys.exit(1)
 
 
-def makefile(file, project_name, assist=False):
+def makefile(file, project_name):
     """
     Write the files for the project_name
     """
@@ -62,7 +77,7 @@ def makefile(file, project_name, assist=False):
     elif file == 'test_project.py':
         file = '{}'.format('test_' + project_name + '.py')
 
-    if file == '..':  # go back one directory
+    if file == '<--':  # go back one directory
         os.chdir('..')
     else:
         try:
@@ -71,3 +86,7 @@ def makefile(file, project_name, assist=False):
         except Exception as e:
             click.echo('Error wrinting {}. Aborted!'.format(file))
             sys.exit(1)
+
+
+if __name__ == '__main__':
+    pass

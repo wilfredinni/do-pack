@@ -9,7 +9,6 @@ import os
 
 
 # TODO: implement templates for create() (empty structure) 50%.
-# TODO: template for python .gitignore
 
 
 @click.group()
@@ -30,11 +29,16 @@ def create(project_name, template):
     """
     # long messages
     notice = '\ndo will create your {} Project Structure.'.format(project_name)
+    notice_t = '\nCreate {} structure using {} file Template.'.format(
+        project_name, template)
     done = '{} was created on {}'
 
-    # checks if a template was invoked
+    # checks if a template was passed
     if template:
-        print('here comes the templates!!')
+        click.echo(notice_t)
+        if click.confirm('Do you want to continue?'):
+            do.skeleton.make_skeleton(project_name, template)
+            click.echo(done.format(project_name, os.path.join(os.getcwd())))
     else:
         click.echo(notice)
         if click.confirm('Do you want to continue?'):
@@ -104,6 +108,7 @@ def config():
     A simple configuration for common fields.
     If executed twice, it will overwrite the previous one.
     """
+    # TODO: add github user name for the project url
     # retrieve the config data from config.json
     config_field = do.config.show_common
     default_author = config_field('default_author')
