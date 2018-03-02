@@ -14,15 +14,15 @@ import click
 def make_skeleton(project_name, authors, choosen_license, setup, gitignore):
     """
     Create de skeleton of the python project and
-    Redirect the files and folders to the proper function.
+    redirect the files and folders to the proper function.
     """
     # TODO: 50% - implement a template system for the skeleton in .json
-
+    loaded_template = load_template()
     # make the folders
-    for folder in load_template().keys():
+    for folder in loaded_template.keys():
         makedir(folder, project_name)
         # make the files
-        for files in load_template()[folder]:
+        for files in loaded_template[folder]:
             makefile(files, project_name, authors,
                      choosen_license, setup, gitignore)
 
@@ -31,11 +31,10 @@ def load_template():
     """
     Load the template for the python package
     """
+    skeleton = os.path.join(os.path.dirname(__file__),
+                            'templates', 'default_structure.json')
     try:
-        default_skeleton = os.path.join(
-            os.path.dirname(__file__), 'templates', 'default_structure.json'
-        )
-        with open(default_skeleton) as template:
+        with open(skeleton, 'r') as template:
             return json.load(template)
     except FileNotFoundError:
         click.echo('Template file not found. Aborted!')
@@ -47,7 +46,7 @@ def makedir(directory, project_name):
     Make the folders tree.
     """
     # change the name of base and bin for the name of the project
-    if directory == 'base' or directory == 'bin':
+    if (directory == 'base') or (directory == 'bin'):
         directory = project_name
     # write the folders
     try:
@@ -84,7 +83,7 @@ def writefile(file, content=''):
     Function that write the files and go back one folder
     for the sake of the stucture.
     """
-    if file == '..':  # go back one directory
+    if file == '<--':  # go back one directory
         os.chdir('..')
     else:
         try:
