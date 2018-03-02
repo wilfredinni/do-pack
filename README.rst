@@ -31,7 +31,7 @@ Install
 Usage
 -----
 
-Run the config command:
+- Run the config command:
 
 ::
 
@@ -39,13 +39,28 @@ Run the config command:
 
 Use it to fill common fields once (if executed twice, it will overwrite the previous configuration)
 
-Create an empty project:
+- Create a default python project:
 
 ::
 
     $ do create <project-name>
 
-A step by step setup for new projects:
+Create a project using one of the available templates:
+
+::
+
+    $ do create <project-name> -t <template>
+
+*-t* is the short for *--template*.
+Available templates: *flask*, *django* and *pymin* (minimal python project).
+
+To use your own template put it in a *.json* file in your current directory. Ex.:
+
+::
+
+    $ do create <project-name> -t <my-template>
+
+- Create a project using the step by step setup:
 
 ::
 
@@ -55,7 +70,7 @@ This command let you fill the ``setup.py``, ``AUTHORS.rst``, choose a ``LICENSE`
 a ``.gitignore`` file with rules for *Linux*, *MacOs*, *Windows*, *Python*, *Visual Studio*, *VS Code*, 
 *Sublime Text* and *Pycharm* (made with https://www.gitignore.io/).
 
-Folder Structure
+Default Folder Structure
 ----------------
 
 ::
@@ -77,9 +92,11 @@ Folder Structure
     ├── requirements.txt
     └── test-requirements.txt
 
+
 TODOs
 -----
 
 -  Implement a ``template`` system for a more flexible folder structure
-   (50%).
+   (75%).
+-  Add github username to the ``config`` command to fill the project url.
 -  Generate the documentation (sphinx).
