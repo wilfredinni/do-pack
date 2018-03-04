@@ -3,6 +3,9 @@ do-pack
 
 A simple and quick command line tool to create python packages.
 
+.. image:: https://badge.fury.io/py/do-pack.svg
+    :target: https://badge.fury.io/py/do-pack
+
 .. image:: https://travis-ci.org/wilfredinni/do-pack.svg?branch=master
     :target: https://travis-ci.org/wilfredinni/do-pack
 
@@ -21,29 +24,65 @@ A simple and quick command line tool to create python packages.
 Install
 -------
 
-::
-
-    $ pip install do-pack
+``$ pip install do``
 
 Usage
 -----
 
-Create an empty project:
+The config command
+~~~~~~~~~~~~~~~~~~
 
-::
+``$ do config``
 
-    $ do create <project-name>
+Use the config command to fill common fields once (if executed twice it
+will overwrite the previous configuration).
 
-A step by step setup for new projects:
+Create a default python project
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-::
+``$ do create <project-name>``
 
-    $ do assistant
+Create a project using one of the available templates
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This command let you fill the ``setup.py``, ``AUTHORS.rst`` and choose a ``LICENSE``.
+``$ do create <project-name> -t <template>``
 
-Folder Structure
-----------------
+*-t* is the short for *–template*.
+
+Available templates:
+
+-  *flask*
+-  *django*
+-  *pymin* (minimal python project)
+
+To use your own template you can use a *.json* file in your current
+directory, e.g.:
+
+``my_template.json``
+
+And call it using:
+
+``$ do create my_project -t my_template``
+
+A step by step setup for new projects
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``$ do assistant``
+
+This command fills:
+
+-  ``setup.py``
+-  ``AUTHORS.rst``
+-  ``LICENSE``
+-  ``.gitignore`` file with rules for *Linux*, *MacOs*,
+   *Windows*, *Python*, *Visual Studio*, *VS Code*, *Sublime Text* and
+   *Pycharm* (made with https://www.gitignore.io/).
+
+Default Folder Structure and Templates
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This is the folder structure created when using
+``do create <my_project>``.
 
 ::
 
@@ -64,10 +103,53 @@ Folder Structure
     ├── requirements.txt
     └── test-requirements.txt
 
-TODOs
------
+-  The template system use a ``.json`` file in wich the keys are the
+   folders and the values are files.
+-  Every time a folder is created, the program will automatically enter
+   it. If you need to exit that folder so the next one is placed in the
+   same directory, ``<--`` can be used as many times needed.
+-  Folders (keys) ``base`` and ``bin`` are replaced with the project name.
+-  ``project.py`` is replaced with the project name (e.g.
+   ``my_project.py``).
+-  In ``test_projet.py``, ``project`` is replaced with the project name
+   (e.g. ``test_my_project.py``)
 
--  Implement a ``template`` system for a more flexible folder structure (50%).
--  Add a ``config`` command to fill common fields once (such as *autor_name* and *author_email*).
+This is the template for the default folder structure:
+
+::
+
+    {
+        "base": [
+            "LICENSE",
+            "setup.py",
+            "README.rst",
+            "AUTHORS.rst",
+            ".gitignore",
+            "requirements.txt",
+            "test-requirements.txt",
+            "MANIFEST.in"
+        ],
+        "bin": [
+            "project.py",
+            "__init__.py",
+            "<--"
+        ],
+        "docs": [
+            "index.rst",
+            "<--"
+        ],
+        "tests": [
+            "__init__.py",
+            "test_project.py",
+            "<--"
+        ]
+    }
+
+TODOs
+~~~~~
+
+-  Implement a ``template`` to ``assistant`` (75%).
+-  Add github username to the ``config`` command to fill the project
+   url.
 -  Generate the documentation (sphinx).
 -  Add a template for a python ``.gitignore``.

@@ -17,38 +17,51 @@ def load_template(template_file, path=path_template):
         sys.exit(1)
 
 
-def setup_template(setup_name,
-                   setup_version,
-                   setup_description,
-                   setup_author,
-                   setup_author_email,
-                   setup_url,
-                   path=path_template,
-                   ):
-
+def setup_template(
+        setup_name,
+        setup_version,
+        setup_description,
+        setup_author,
+        setup_author_email,
+        setup_url
+):
     setup_content = load_template('template_setup.txt')
 
-    return setup_content.substitute(setup_name=setup_name,
-                                    setup_version=setup_version,
-                                    setup_description=setup_description,
-                                    setup_author=setup_author,
-                                    setup_author_email=setup_author_email,
-                                    setup_url=setup_url
-                                    )
+    return setup_content.substitute(
+        setup_name=setup_name,
+        setup_version=setup_version,
+        setup_description=setup_description,
+        setup_author=setup_author,
+        setup_author_email=setup_author_email,
+        setup_url=setup_url
+    )
 
 
-def authors_template(project_name,
-                     setup_author,
-                     setup_author_email,
-                     path=path_template):
+def authors_template(
+        project_name,
+        setup_author,
+        setup_author_email):
 
     authors_content = load_template('template_authors.txt')
 
-    return authors_content.substitute(project_name=project_name,
-                                      setup_author=setup_author,
-                                      setup_author_email=setup_author_email
-                                      )
+    return authors_content.substitute(
+        project_name=project_name,
+        setup_author=setup_author,
+        setup_author_email=setup_author_email
+    )
+
+
+def gitignore_template():
+    file_i = 'template_gitignore.txt'
+    try:
+        with open(os.path.join(path_template, file_i), 'r') as git_content:
+            return git_content.read()
+    except FileNotFoundError:
+        click.echo('fileNotFoundError: {} Not Found. Aborted!'
+                   .format(file_i))
+        sys.exit(1)
 
 
 if __name__ == '__main__':
-    pass
+    a = gitignore_template()
+    print(a)
