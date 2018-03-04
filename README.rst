@@ -107,8 +107,8 @@ This is the folder structure created when using
    folders and the values are files.
 -  Every time a folder is created, the program will automatically enter
    it. If you need to exit that folder so the next one is placed in the
-   same directory, yo can use ``<--`` as many times needed.
--  keys ``base`` and ``bin`` are replaced with the project name.
+   same directory, ``<--`` can be used as many times needed.
+-  Folders (keys) ``base`` and ``bin`` are replaced with the project name.
 -  ``project.py`` is replaced with the project name (e.g.
    ``my_project.py``).
 -  In ``test_projet.py``, ``project`` is replaced with the project name
@@ -148,8 +148,7 @@ This is the template for the default folder structure:
 TODOs
 ~~~~~
 
--  Implement a ``template`` system for a more flexible folder structure
-   (75%).
+-  Implement a ``template`` to ``assistant`` (75%).
 -  Add github username to the ``config`` command to fill the project
    url.
 -  Generate the documentation (sphinx).
