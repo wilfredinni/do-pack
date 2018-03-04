@@ -73,8 +73,8 @@ This command fills:
 
 -  ``setup.py``
 -  ``AUTHORS.rst``
--  Choose a ``LICENSE``
--  Write a ``.gitignore`` file with rules for *Linux*, *MacOs*,
+-  ``LICENSE``
+-  ``.gitignore`` file with rules for *Linux*, *MacOs*,
    *Windows*, *Python*, *Visual Studio*, *VS Code*, *Sublime Text* and
    *Pycharm* (made with https://www.gitignore.io/).
 
