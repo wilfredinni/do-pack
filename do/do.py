@@ -29,7 +29,7 @@ def create(project_name, template):
     """
     # long messages
     notice = '\ndo will create your {} Project Structure.'.format(project_name)
-    notice_t = '\nCreate {} structure using {} file Template.'.format(
+    notice_t = '\ndo will create {} project using {} file Template.'.format(
         project_name, template)
     done = '{} was created on {}'
 
