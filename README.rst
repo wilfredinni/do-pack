@@ -24,57 +24,65 @@ A simple and quick command line tool to create python packages.
 Install
 -------
 
-::
-
-    $ pip install do-pack
+``$ pip install do``
 
 Usage
 -----
 
-<<<<<<< HEAD
-- Run the config command:
-=======
-Run the ``config`` command to fill common fields once (if executed twice, it will overwrite the previous configuration):
->>>>>>> b10b4da58dc1e8bd89b7a6e4b19520d6073191e1
+The config command
+~~~~~~~~~~~~~~~~~~
 
-::
+``$ do config``
 
-    $ do config
+Use the config command to fill common fields once (if executed twice it
+will overwrite the previous configuration).
 
+Create a default python project
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- Create a default python project:
+``$ do create <project-name>``
 
-::
+Create a project using one of the available templates
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    $ do create <project-name>
+``$ do create <project-name> -t <template>``
 
-Create a project using one of the available templates:
+*-t* is the short for *–template*.
 
-::
+Available templates:
 
-    $ do create <project-name> -t <template>
+-  *flask*
+-  *django*
+-  *pymin* (minimal python project)
 
-*-t* is the short for *--template*.
-Available templates: *flask*, *django* and *pymin* (minimal python project).
+To use your own template you can use a *.json* file in your current
+directory, e.g.:
 
-To use your own template put it in a *.json* file in your current directory. Ex.:
+``my_template.json``
 
-::
+And call it using:
 
-    $ do create <project-name> -t <my-template>
+``$ do create my_project -t my_template``
 
-- Create a project using the step by step setup:
+A step by step setup for new projects
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-::
+``$ do assistant``
 
-    $ do assistant
+This command fills:
 
-This command let you fill the ``setup.py``, ``AUTHORS.rst``, choose a ``LICENSE`` and write
-a ``.gitignore`` file with rules for *Linux*, *MacOs*, *Windows*, *Python*, *Visual Studio*, *VS Code*, 
-*Sublime Text* and *Pycharm* (made with https://www.gitignore.io/).
+-  ``setup.py``
+-  ``AUTHORS.rst``
+-  Choose a ``LICENSE``
+-  Write a ``.gitignore`` file with rules for *Linux*, *MacOs*,
+   *Windows*, *Python*, *Visual Studio*, *VS Code*, *Sublime Text* and
+   *Pycharm* (made with https://www.gitignore.io/).
 
-Default Folder Structure
-----------------
+Default Folder Structure and Templates
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This is the folder structure created when using
+``do create <my_project>``.
 
 ::
 
@@ -95,11 +103,53 @@ Default Folder Structure
     ├── requirements.txt
     └── test-requirements.txt
 
+-  The template system use a ``.json`` file in wich the keys are the
+   folders and the values are files.
+-  Every time a folder is created, the program will automatically enter
+   it. If you need to exit that folder so the next one is placed in the
+   same directory, yo can use ``<--`` as many times needed.
+-  keys ``base`` and ``bin`` are replaced with the project name.
+-  ``project.py`` is replaced with the project name (e.g.
+   ``my_project.py``).
+-  In ``test_projet.py``, ``project`` is replaced with the project name
+   (e.g. ``test_my_project.py``)
+
+This is the template for the default folder structure:
+
+::
+
+    {
+        "base": [
+            "LICENSE",
+            "setup.py",
+            "README.rst",
+            "AUTHORS.rst",
+            ".gitignore",
+            "requirements.txt",
+            "test-requirements.txt",
+            "MANIFEST.in"
+        ],
+        "bin": [
+            "project.py",
+            "__init__.py",
+            "<--"
+        ],
+        "docs": [
+            "index.rst",
+            "<--"
+        ],
+        "tests": [
+            "__init__.py",
+            "test_project.py",
+            "<--"
+        ]
+    }
 
 TODOs
------
+~~~~~
 
 -  Implement a ``template`` system for a more flexible folder structure
    (75%).
--  Add github username to the ``config`` command to fill the project url.
+-  Add github username to the ``config`` command to fill the project
+   url.
 -  Generate the documentation (sphinx).
