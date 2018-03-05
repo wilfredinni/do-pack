@@ -1,3 +1,7 @@
+"""
+A simple and quick command line tool to create python packages.
+"""
+
 import do.template_config
 import do.skeleton
 import do.licenses
@@ -8,13 +12,10 @@ import sys
 import os
 
 
-# TODO: implement templates for create() (empty structure) 50%.
-
-
 @click.group()
 def main():
     """
-    Simple command-line tool to create python packages.
+    A simple and quick command line tool to create python packages.
     """
     pass
 
@@ -25,7 +26,7 @@ def main():
 @click.argument('project-name')
 def create(project_name, template):
     """
-    creates an empty structure for your package.
+    creates a default python structure for your package or project.
     """
     # long messages
     notice = '\ndo will create your {} Project Structure.'.format(project_name)
@@ -38,12 +39,12 @@ def create(project_name, template):
         click.echo(notice_t)
         if click.confirm('Do you want to continue?'):
             do.skeleton.make_skeleton(project_name, template)
-            click.echo(done.format(project_name, os.path.join(os.getcwd())))
+            click.echo(done.format(project_name, os.getcwd()))
     else:
         click.echo(notice)
         if click.confirm('Do you want to continue?'):
             do.skeleton.make_skeleton(project_name)
-            click.echo(done.format(project_name, os.path.join(os.getcwd())))
+            click.echo(done.format(project_name, os.getcwd()))
 
 
 @main.command()
@@ -56,8 +57,7 @@ def assistant():
     msg_lice_ref = '(more detailed info in https://choosealicense.com):\n'
     msg_choose_lice = '\nEnter the number of the license to choose one'
 
-    # clear the console
-    os.system('cls')
+    clear()  # clear the console
 
     # click.echo('do will now start the assistant.')
     if click.confirm(msg_notice):
@@ -99,16 +99,19 @@ def assistant():
             setup, gitignore
         )
         click.echo('\n>> {} was created on {}'.format(
-            project_name, os.path.join(os.getcwd())))
+            project_name, os.getcwd()))
 
 
 @main.command()
 def config():
     """
-    A simple configuration for common fields.
+    A simple configuration for common fields (author_name
+    and author_email).
+
     If executed twice, it will overwrite the previous one.
     """
     # TODO: add github user name for the project url
+
     # retrieve the config data from config.json
     config_field = do.config.show_common
     default_author = config_field('default_author')
@@ -116,22 +119,22 @@ def config():
 
     # long messages
     msg_welcome = '\nWelcome to the configuration for common fields.'
-    msg_ask_author = '\nauthor'
-    msg_ask_mail = 'author_email'
 
     # ask
     click.echo(msg_welcome)
     if click.confirm('Do you want to continue?'):
-        oneTime_author = click.prompt(msg_ask_author, default=default_author)
-        oneTime_mail = click.prompt(msg_ask_mail, default=default_mail)
+        oneTime_author = click.prompt('\nauthor', default=default_author)
+        oneTime_mail = click.prompt('author_email', default=default_mail)
         # write the fields in config.json
         do.config.write_json(oneTime_author, oneTime_mail)
 
 
 def lice(num, setup_author, project_name):
-    # using a dict instead of an if statement
+    """
+    Returns the license choosed by the user.
+    """
     choose = do.licenses.choose
-    return {
+    return {  # dict instead of an if statement
         '1': lambda: choose('Apache License 2.0', setup_author),
         '2': lambda: choose('BSD License', setup_author),
         '3': lambda: choose('GNU Affero General Public License v3',
@@ -144,6 +147,10 @@ def lice(num, setup_author, project_name):
         '7': lambda: choose('Mozilla Public License Version 2.0'),
         '8': lambda: do.licenses.choose('Unlicensed')
     }.get(num, lambda: sys.exit(1))()
+
+
+def clear():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 
 if __name__ == '__main__':

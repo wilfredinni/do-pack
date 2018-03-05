@@ -24,7 +24,7 @@ A simple and quick command line tool to create python packages.
 Install
 -------
 
-``$ pip install do``
+``$ pip install do-pack``
 
 Usage
 -----
@@ -34,7 +34,7 @@ The config command
 
 ``$ do config``
 
-Use the config command to fill common fields once (if executed twice it
+Use it to fill common fields once (if executed twice it
 will overwrite the previous configuration).
 
 Create a default python project
@@ -47,7 +47,7 @@ Create a project using one of the available templates
 
 ``$ do create <project-name> -t <template>``
 
-*-t* is the short for *–template*.
+*-t* is the short for *--template*.
 
 Available templates:
 
@@ -55,12 +55,12 @@ Available templates:
 -  *django*
 -  *pymin* (minimal python project)
 
-To use your own template you can use a *.json* file in your current
+To use your own template you need to store it in a *.json* file in your current
 directory, e.g.:
 
 ``my_template.json``
 
-And call it using:
+And use it by:
 
 ``$ do create my_project -t my_template``
 
@@ -69,12 +69,12 @@ A step by step setup for new projects
 
 ``$ do assistant``
 
-This command fills:
+This command help you fill:
 
 -  ``setup.py``
 -  ``AUTHORS.rst``
 -  ``LICENSE``
--  ``.gitignore`` file with rules for *Linux*, *MacOs*,
+-  ``.gitignore`` with rules for *Linux*, *MacOs*,
    *Windows*, *Python*, *Visual Studio*, *VS Code*, *Sublime Text* and
    *Pycharm* (made with https://www.gitignore.io/).
 
@@ -82,7 +82,7 @@ Default Folder Structure and Templates
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This is the folder structure created when using
-``do create <my_project>``.
+``do create <my_project>`` and ``do assistant``.
 
 ::
 
@@ -103,11 +103,11 @@ This is the folder structure created when using
     ├── requirements.txt
     └── test-requirements.txt
 
--  The template system use a ``.json`` file in wich the keys are the
+-  The template system use a ``.json`` file in wich the keys are
    folders and the values are files.
 -  Every time a folder is created, the program will automatically enter
    it. If you need to exit that folder so the next one is placed in the
-   same directory, ``<--`` can be used as many times needed.
+   same directory, place a ``<--`` in the files (values) as many times needed.
 -  Folders (keys) ``base`` and ``bin`` are replaced with the project name.
 -  ``project.py`` is replaced with the project name (e.g.
    ``my_project.py``).
@@ -148,8 +148,7 @@ This is the template for the default folder structure:
 TODOs
 ~~~~~
 
--  Implement a ``template`` to ``assistant`` (75%).
--  Add github username to the ``config`` command to fill the project
+-  Implement ``--template`` for  the ``assistant`` command (75%).
+-  Add github username to the ``config`` command for the project
    url.
 -  Generate the documentation (sphinx).
--  Add a template for a python ``.gitignore``.

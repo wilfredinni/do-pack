@@ -1,5 +1,5 @@
 """
-Create an empty folder and a file structure for a
+Create a default folder and a file structure for a
 python package based on the name of the project.
 """
 
@@ -11,7 +11,7 @@ import click
 
 def make_skeleton(project_name, template=False):
     """
-    Create an empty structure for a python project.
+    Create a default structure for a python project.
     """
     if template:
         # load the structure for the custom template
@@ -20,11 +20,9 @@ def make_skeleton(project_name, template=False):
         # load the structure for the default template
         loaded_template = load_template()
 
-    for folder in loaded_template.keys():
-        # make the folders
+    for folder in loaded_template.keys():  # make the folders
         makedir(folder, project_name)
-        for files in loaded_template[folder]:
-            # make the files
+        for files in loaded_template[folder]:  # write the files
             makefile(files, project_name)
 
 
@@ -33,14 +31,15 @@ def load_template(template=False):
     Load the default or custom template for the python package.
     """
     if template:
-        if os.path.exists(os.path.join(os.getcwd(), template + '.json')):
-            # relative path
-            path = os.path.join(os.getcwd(), template + '.json')
+        full_template = template + '.json'  # template full name
+        if os.path.exists(os.path.join(os.getcwd(), full_template)):
+            # 1- search for a template in the same folder that do is excecuted
+            path = os.path.join(os.getcwd(), full_template)
         else:
+            # 2- search for the template in the default templates folder
             path = os.path.join(
-                os.path.dirname(__file__), 'templates', template + '.json')
+                os.path.dirname(__file__), 'templates', full_template)
     else:
-        # absolute path
         path = os.path.join(
             os.path.dirname(__file__), 'templates', 'default_structure.json')
     try:
@@ -58,8 +57,7 @@ def makedir(directory, project_name):
     # change the name of base and bin for the name of the project
     if (directory == 'base') or (directory == 'bin'):
         directory = project_name
-    # write the folders name
-    try:
+    try:  # write the folders
         os.makedirs(directory)
         os.chdir(directory)
     except FileExistsError:

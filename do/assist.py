@@ -1,9 +1,9 @@
 """
-Create de skeleton of the python project and
+Create the structure of the python project and
 Redirect the files and folders to the proper function.
 
-Also write the AUTHORS.rst, LICENSE and setup.py with
-the users inputs.
+Also write the AUTHORS.rst, LICENSE, .gitignore and
+setup.py files with the users inputs.
 """
 import os
 import sys
@@ -13,23 +13,20 @@ import click
 
 def make_skeleton(project_name, authors, choosen_license, setup, gitignore):
     """
-    Create de skeleton of the python project and
+    Creates the structure of the python project and
     redirect the files and folders to the proper function.
     """
-    # TODO: 50% - implement a template system for the skeleton in .json
     loaded_template = load_template()
-    # make the folders
-    for folder in loaded_template.keys():
+    for folder in loaded_template.keys():  # make the folders
         makedir(folder, project_name)
-        # make the files
-        for files in loaded_template[folder]:
+        for files in loaded_template[folder]:  # make the files
             makefile(files, project_name, authors,
                      choosen_license, setup, gitignore)
 
 
 def load_template():
     """
-    Load the template for the python package
+    Load the default template for the python package
     """
     skeleton = os.path.join(os.path.dirname(__file__),
                             'templates', 'default_structure.json')
@@ -48,8 +45,7 @@ def makedir(directory, project_name):
     # change the name of base and bin for the name of the project
     if (directory == 'base') or (directory == 'bin'):
         directory = project_name
-    # write the folders
-    try:
+    try:  # write the folders
         os.makedirs(directory)
         os.chdir(directory)
     except FileExistsError:
@@ -60,7 +56,8 @@ def makedir(directory, project_name):
 def makefile(file, project_name, authors, choosen_license, setup, gitignore):
     """
     Make the files for the project and write the content
-    of AUTHORS.rst, LICENSE and setup.py in assistant mode
+    of AUTHORS.rst, LICENSE, .gitignore and setup.py in
+    assistant mode
     """
     # change the names project.py and test_project.py
     if file == 'project.py':
@@ -73,8 +70,7 @@ def makefile(file, project_name, authors, choosen_license, setup, gitignore):
         'AUTHORS.rst': lambda: writefile(file, authors),
         'setup.py': lambda: writefile(file, setup),
         '.gitignore': lambda: writefile(file, gitignore)
-    }
-    # if the file is found, template it, else, None
+    }  # if the file is found, template it, else, None
     template_files.get(file, lambda: writefile(file))()
 
 
@@ -86,12 +82,12 @@ def writefile(file, content=''):
     if file == '<--':  # go back one directory
         os.chdir('..')
     else:
-        try:
-            with open(file, 'w') as f:
-                f.write(content)
-        except Exception as e:
-            click.echo('Error wrinting {}. Aborted!'.format(file))
-            sys.exit(1)
+        # try:
+        with open(file, 'w') as f:
+            f.write(content)
+        # except Exception as e:
+        #     click.echo('Error wrinting {}. Aborted!'.format(file))
+        #     sys.exit(1)
 
 
 if __name__ == '__main__':

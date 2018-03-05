@@ -1,13 +1,11 @@
 """
 How to template the licenses:
-
-$project - $year - $fullname
--------------------------------------
-GNU_GPLv3   = year, fullname, project
-apache2     = year, fullname
-BSD         = year, fullname
-GNU_AGPLv3  = year, fullname
-mit         = year, fullname
+----------------------------------------
+GNU_GPLv3   = $year, $fullname, $project
+apache2     = $year, $fullname
+BSD         = $year, $fullname
+GNU_AGPLv3  = $year, $fullname
+mit         = $year, $fullname
 GNU_LGPLv3  = None
 Mozilla     = None
 Unlicensed  = None
@@ -16,9 +14,9 @@ Unlicensed  = None
 from datetime import datetime
 from string import Template
 import json
-import os
 import click
 import sys
+import os
 
 # short names for licenses
 apache2 = 'Apache License 2.0'
@@ -27,17 +25,13 @@ gnuGpl = 'GNU General Public License v3'
 bsd = 'BSD License'
 mit = 'MIT License'
 
-# relative path to the licenses template folder
 template_path = os.path.join(
     os.path.dirname(__file__), 'templates', 'licenses')
-
-# current year
-year = str(datetime.now().year)
 
 
 def load_index_json(path=template_path):
     """
-    open the index.json that contains the license names and filenames
+    Open the index.json that contains the licenses and filenames.
     """
     try:
         with open(os.path.join(path, 'index.json'), 'r') as i:
@@ -80,6 +74,7 @@ def choose(license_name, author_name=None, project=None):
     Allows to Choose a license in assistant mode.
 
     """
+    year = str(datetime.now().year)  # get the current year
     # the call to the function that load the content a license
     lic_name = load_license_content(license_name)
 
@@ -90,7 +85,7 @@ def choose(license_name, author_name=None, project=None):
             (license_name == mit)):
         return lic_name.substitute(year=year,
                                    fullname=author_name)
-    # licenses that need year, author name and project name
+    # licenses that need year, author name and project_name
     elif license_name == gnuGpl:
         return lic_name.substitute(year=year,
                                    fullname=author_name,

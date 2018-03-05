@@ -1,1 +1,4 @@
-{"default_author": "John Smith", "default_mail": "john@smith.com"}
+{
+    "default_author": "John Smith",
+    "default_mail": "john@smith.com"
+}

@@ -8,7 +8,7 @@ with open('README.rst') as f:
 
 setup(
     name='do-pack',
-    version='0.1.2',
+    version='0.1.3',
     description='A command-line tool to create python packages',
     long_description=readme,
     author='Carlos Montecinos Geisse',
