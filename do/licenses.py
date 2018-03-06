@@ -62,11 +62,10 @@ def show(index_json=load_index_json()):
     """
     Prints the list of licenses in the index.json for the user to choose
     """
-    index = 1
     # iterates over the keys of index.json and print them
-    for licenses in index_json.keys():
-        click.echo('{} - {}'.format(str(index), licenses))
+    for index, licenses in enumerate(index_json.keys()):
         index += 1
+        click.echo('{} - {}'.format(index, licenses))
 
 
 def choose(license_name, author_name=None, project=None):
