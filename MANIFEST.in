@@ -1,3 +1,4 @@
 include LICENSE
 
+recursive-include do *
 recursive-include do/templates *
